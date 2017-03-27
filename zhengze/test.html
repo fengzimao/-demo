@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>byclass</title>
+</head>
+<body>
+	<ul id="list">
+		<li class="box">11</li>
+		<li class="box1">22</li>
+		<li class="box2 red">33</li>
+		<li class="red box box1">44</li>
+		<li class="aabox">55</li>
+	</ul>
+</body>
+<script>
+	function byClass(classN){
+		var tags=document.all?document.all:document.getElementsByTagName('*');
+		var arr=[];
+		var reg=new RegExp("\\b"+classN+"\\b","g");
+		for (var i = 0; i < tags.length; i++) {
+			if(reg.test(tags[i].className)){
+				console.log(tags[i].className);
+				arr.push(tags[i]); 
+			}
+		};
+		return arr;
+	}
+	var boxs=byClass("box");
+	console.log(boxs.length);
+	console.log(boxs[0].innerHTML)
+	console.log(boxs[1].innerHTML)
+	var str="my name is haoliuting";
+	var reg=/\bmy\b/g;
+	console.log(reg.test(str));
+</script>
+</html>

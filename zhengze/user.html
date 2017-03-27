@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	form{
+		font-size: 30px;
+	}
+	input{
+		width: 300px;
+		height: 50px;
+		margin: 10px;
+		font-size: 25px;
+	}
+	</style>
+</head>
+<body>
+	<form action="http://baidu.com">
+		<label>账号：</label>
+		<input type="text">
+		<span></span><br />
+		<label>密码：</label>
+		<input type="password">
+		<span></span><br />
+		<label>确认：</label>
+		<input type="password">
+		<span></span><br />
+		<label>邮箱：</label>
+		<input type="text">
+		<span></span><br />
+		<input type="submit" value="提交">
+	</form>
+</body>
+<script>
+// 账号：请输入6-24个数字/字母/下划线（不能含有空格）
+//密码：请输入6-12个数字/字母（不能含有空格）
+//确认：请确认两次密码一样
+//邮箱：请输入格式正确的邮箱(不能含有空格)
+var ipt=document.getElementsByTagName('input');
+var tip=document.getElementsByTagName('span');
+var form=document.getElementsByTagName('form')[0];
+var reg=/\s/g;
+var reg0=/^\w{6,24}$/g;
+var reg1=/^[0-9a-zA-Z]{6,12}$/g;
+var reg3=/^\w{3,24}@[0-9a-zA-Z]{1,12}(\.[a-z]{1,4}){1,4}$/g;
+for (var i = 0; i < ipt.length-1; i++) {
+	ipt[i].bool=false;
+};
+function iptBlur(obj,r,obj2,str){
+	obj.onblur=function(){
+		if(reg.test(obj.value)){
+			obj2.style.color="red";
+			obj2.innerHTML="不能含有空格";
+			this.bool=false;
+		}else{
+			if(r.test(obj.value)){
+				obj2.style.color="green";
+				obj2.innerHTML="输入正确";
+				this.bool=true;
+			}else{
+				obj2.style.color="red";
+				obj2.innerHTML=str;
+				this.bool=false;
+			}
+		}
+	}
+}
+iptBlur(ipt[0],reg0,tip[0],"请输入6-24个数字/字母/下划线（不能含有空格）");
+iptBlur(ipt[1],reg1,tip[1],"请输入6-12个数字/字母（不能含有空格）");
+iptBlur(ipt[3],reg3,tip[3],"请输入格式正确的邮箱(不能含有空格)");
+ipt[2].onblur=function(){
+	if(ipt[2].value==ipt[1].value&&ipt[2].value!=''){
+		tip[2].style.color="green";
+		tip[2].innerHTML="输入正确";
+		ipt[2].bool=true;
+	}else if(ipt[2].value==ipt[1].value&&ipt[2].value==''){
+		tip[2].style.color="red";
+		tip[2].innerHTML="请输入密码";
+		ipt[2].bool=false;
+	}else{
+		tip[2].style.color="red";
+		tip[2].innerHTML="请确认两次密码一样";
+		ipt[2].bool=false;
+	}
+}
+form.onsubmit=function(){
+	if(!(ipt[0].bool&&ipt[1].bool&&ipt[2].bool&&ipt[3].bool)){
+		return false;
+	}
+}
+</script>
+</html>

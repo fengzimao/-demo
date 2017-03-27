@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>正则</title>
+	<style>
+	div{
+		font-size: 40px;
+	}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+<script>
+var str="ad分地方及时jf osk jokf41564fj\siojf45";
+var reg1 = new RegExp("a*b","g");
+var reg2 = /a*b/g;
+var reg3=/\d+/g;
+var reg4=new RegExp("\\d","g");
+var reg5=/\s/g;
+var reg6=/\bosk\b/g;
+var reg7=/./g;
+var reg8=/[\u4e00-\u9fa5]/g;
+var reg9=/[^kjo]/g;
+var reg10=/[0-9]/g;
+var reg11=/[A-Z]/g;
+var reg12=/[0-9]+/g;
+var reg13=/[0-9]*jjj/g;
+var reg14=/[a]{5,8}/g;
+var reg15=/^[a-z]/g;
+var reg16=/[0-9]$/g;
+var reg17=/^[0-9]|[a]{5}/g;
+// box.innerHTML=reg17.test(str);
+box.innerHTML=str.search(reg3);//18
+console.log(reg3);
+// box.innerHTML=str.search(reg14);//-1
+// console.log(str.match(reg12));//数组
+// box.innerHTML=str.replace(reg12,"***");
+// console.log(str.split(reg12));
+// box.innerHTML=reg12.exec(str);
+</script>
+</html>
